@@ -1,0 +1,119 @@
+{
+  "payload": {
+    "export": "cart-delivery-options-transform-run",
+    "target": "cart.delivery-options.transform.run",
+    "input": {
+      "presentmentCurrencyRate": "1.0",
+      "cart": {
+        "cost": {
+          "subtotalAmount": {
+            "amount": "100.0"
+          }
+        },
+        "buyerIdentity": {
+          "isAuthenticated": false,
+          "purchasingCompany": null,
+          "customer": {
+            "hasTags": [
+              {
+                "tag": "wholesale",
+                "hasTag": true
+              }
+            ]
+          }
+        },
+        "lines": [
+          {
+            "quantity": 1,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "weight": 1.0,
+              "weightUnit": "KILOGRAMS",
+              "product": {
+                "hasTags": []
+              }
+            }
+          }
+        ],
+        "deliveryGroups": [
+          {
+            "deliveryAddress": {
+              "countryCode": "DE",
+              "zip": "10115"
+            },
+            "deliveryOptions": [
+              {
+                "handle": "std",
+                "title": "Standard Shipping",
+                "deliveryMethodType": "SHIPPING",
+                "cost": {
+                  "amount": "4.9"
+                }
+              },
+              {
+                "handle": "exp",
+                "title": "Express Shipping",
+                "deliveryMethodType": "SHIPPING",
+                "cost": {
+                  "amount": "14.9"
+                }
+              },
+              {
+                "handle": "free",
+                "title": "Free Shipping",
+                "deliveryMethodType": "SHIPPING",
+                "cost": {
+                  "amount": "0.0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "deliveryCustomization": {
+        "metafield": {
+          "jsonValue": {
+            "version": 1,
+            "plan": "free",
+            "neverHideAll": true,
+            "rules": [
+              {
+                "id": "r1",
+                "kind": "delivery",
+                "enabled": true,
+                "action": "hide",
+                "target": {
+                  "match": "contains",
+                  "text": "express"
+                },
+                "when": "all",
+                "conditions": [
+                  {
+                    "field": "customerTag",
+                    "op": "hasAny",
+                    "value": [
+                      "wholesale"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "customerTags": [
+              "wholesale"
+            ],
+            "productTags": []
+          }
+        }
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "deliveryOptionHide": {
+            "deliveryOptionHandle": "exp"
+          }
+        }
+      ]
+    }
+  }
+}

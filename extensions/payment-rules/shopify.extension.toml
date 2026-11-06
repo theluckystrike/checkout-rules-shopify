@@ -1,0 +1,24 @@
+api_version = "2026-07"
+
+[[extensions]]
+name = "t:name"
+handle = "payment-rules"
+type = "function"
+description = "t:description"
+
+  [[extensions.targeting]]
+  target = "cart.payment-methods.transform.run"
+  input_query = "src/cart_payment_methods_transform_run.graphql"
+  export = "cart-payment-methods-transform-run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
+
+  [extensions.input.variables]
+  namespace = "$app:checkout-rules"
+  key = "function-configuration"
+
+  [extensions.ui.paths]
+  create = "/app/rules"
+  details = "/app/rules"

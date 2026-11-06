@@ -1,0 +1,103 @@
+{
+  "payload": {
+    "export": "cart-payment-methods-transform-run",
+    "target": "cart.payment-methods.transform.run",
+    "input": {
+      "presentmentCurrencyRate": "1.0",
+      "paymentMethods": [
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/1",
+          "name": "Credit card"
+        },
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/2",
+          "name": "Cash on Delivery (COD)"
+        },
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/3",
+          "name": "Bank Deposit"
+        },
+        {
+          "id": "gid://shopify/PaymentCustomizationPaymentMethod/4",
+          "name": "PayPal"
+        }
+      ],
+      "cart": {
+        "cost": {
+          "subtotalAmount": {
+            "amount": "620.0"
+          }
+        },
+        "buyerIdentity": {
+          "isAuthenticated": false,
+          "purchasingCompany": null,
+          "customer": {
+            "hasTags": []
+          }
+        },
+        "lines": [
+          {
+            "quantity": 1,
+            "merchandise": {
+              "__typename": "ProductVariant",
+              "weight": 1.0,
+              "weightUnit": "KILOGRAMS",
+              "product": {
+                "hasTags": []
+              }
+            }
+          }
+        ],
+        "deliveryGroups": [
+          {
+            "deliveryAddress": {
+              "countryCode": "DE",
+              "zip": "10115"
+            },
+            "selectedDeliveryOption": null
+          }
+        ]
+      },
+      "paymentCustomization": {
+        "metafield": {
+          "jsonValue": {
+            "version": 1,
+            "plan": "free",
+            "neverHideAll": true,
+            "rules": [
+              {
+                "id": "p1",
+                "kind": "payment",
+                "enabled": true,
+                "action": "hide",
+                "target": {
+                  "match": "contains",
+                  "text": "cash on delivery"
+                },
+                "when": "all",
+                "conditions": [
+                  {
+                    "field": "cartSubtotal",
+                    "op": "gte",
+                    "value": 500
+                  }
+                ]
+              }
+            ],
+            "customerTags": [],
+            "productTags": []
+          }
+        }
+      }
+    },
+    "output": {
+      "operations": [
+        {
+          "paymentMethodHide": {
+            "paymentMethodId": "gid://shopify/PaymentCustomizationPaymentMethod/2"
+          }
+        }
+      ]
+    }
+  }
+}

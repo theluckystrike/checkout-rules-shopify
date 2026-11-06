@@ -1,0 +1,24 @@
+api_version = "2026-07"
+
+[[extensions]]
+name = "t:name"
+handle = "delivery-rules"
+type = "function"
+description = "t:description"
+
+  [[extensions.targeting]]
+  target = "cart.delivery-options.transform.run"
+  input_query = "src/cart_delivery_options_transform_run.graphql"
+  export = "cart-delivery-options-transform-run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
+
+  [extensions.input.variables]
+  namespace = "$app:checkout-rules"
+  key = "function-configuration"
+
+  [extensions.ui.paths]
+  create = "/app/rules"
+  details = "/app/rules"

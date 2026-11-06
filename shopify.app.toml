@@ -1,0 +1,42 @@
+# Shopify app configuration. The owner fills client_id with `shopify app config link` (see OWNER-STEPS.md).
+client_id = ""
+name = "Zovo Hide Shipping & Payment"
+application_url = "https://example.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[access_scopes]
+# Payment and delivery customizations plus their metafields. No customer or order data.
+scopes = "write_payment_customizations,write_delivery_customizations"
+
+[auth]
+redirect_urls = [ "https://example.com/auth/callback" ]
+
+[webhooks]
+api_version = "2026-10"
+
+  # Handled by: /app/routes/webhooks.app.uninstalled.tsx
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+  # Handled by: /app/routes/webhooks.app.scopes_update.tsx
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  # Handled by: /app/routes/webhooks.app_subscriptions.update.tsx (plan changes rewrite the rule limit)
+  [[webhooks.subscriptions]]
+  topics = [ "app_subscriptions/update" ]
+  uri = "/webhooks/app_subscriptions/update"
+
+  # Mandatory compliance topics. The app stores no customer data, so they only log and return 200.
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/compliance"
+  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+
+[pos]
+embedded = false

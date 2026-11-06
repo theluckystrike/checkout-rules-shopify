@@ -1,0 +1,59 @@
+query CartDeliveryOptionsTransformRunInput($customerTags: [String!], $productTags: [String!]) {
+  presentmentCurrencyRate
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    buyerIdentity {
+      isAuthenticated
+      purchasingCompany {
+        company {
+          id
+        }
+      }
+      customer {
+        hasTags(tags: $customerTags) {
+          tag
+          hasTag
+        }
+      }
+    }
+    lines {
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          weight
+          weightUnit
+          product {
+            hasTags(tags: $productTags) {
+              tag
+              hasTag
+            }
+          }
+        }
+      }
+    }
+    deliveryGroups {
+      deliveryAddress {
+        countryCode
+        zip
+      }
+      deliveryOptions {
+        handle
+        title
+        deliveryMethodType
+        cost {
+          amount
+        }
+      }
+    }
+  }
+  deliveryCustomization {
+    metafield(namespace: "$app:checkout-rules", key: "function-configuration") {
+      jsonValue
+    }
+  }
+}

@@ -1,0 +1,58 @@
+query CartPaymentMethodsTransformRunInput($customerTags: [String!], $productTags: [String!]) {
+  presentmentCurrencyRate
+  paymentMethods {
+    id
+    name
+  }
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    buyerIdentity {
+      isAuthenticated
+      purchasingCompany {
+        company {
+          id
+        }
+      }
+      customer {
+        hasTags(tags: $customerTags) {
+          tag
+          hasTag
+        }
+      }
+    }
+    lines {
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          weight
+          weightUnit
+          product {
+            hasTags(tags: $productTags) {
+              tag
+              hasTag
+            }
+          }
+        }
+      }
+    }
+    deliveryGroups {
+      deliveryAddress {
+        countryCode
+        zip
+      }
+      selectedDeliveryOption {
+        deliveryMethodType
+      }
+    }
+  }
+  paymentCustomization {
+    metafield(namespace: "$app:checkout-rules", key: "function-configuration") {
+      jsonValue
+    }
+  }
+}
