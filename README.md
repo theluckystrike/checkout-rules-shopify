@@ -90,11 +90,21 @@ See `OWNER-STEPS.md`. In short, link the app with `shopify app config link`, hos
 
 The template stores sessions in SQLite through Prisma. On a host with a persistent volume that works as is. Otherwise switch the Prisma datasource to Postgres.
 
-## Support the project
+[zovo-support-start]: #
 
-The app is MIT licensed. If it saves you work, you can sponsor the author at https://github.com/sponsors/theluckystrike. The app itself takes payment only through Shopify billing.
+## Support Zovo
 
-Other tools by the same author include file viewers for VS Code (JSONL, SQLite, Parquet and CSV) and Confluence and Jira apps.
+Zovo builds and maintains this app. If it saves you time, you can support the work on [GitHub Sponsors](https://github.com/sponsors/theluckystrike). Sponsorship is optional, and the tool works the same without it.
+
+The app itself takes payment only through Shopify billing.
+
+Zovo is made by [theluckystrike](https://github.com/theluckystrike) on GitHub.
+
+## More tools by Zovo
+
+- [All Zovo tools on GitHub](https://github.com/theluckystrike?tab=repositories). Free developer tools for VS Code, Apify, Confluence, Jira and Minecraft servers.
+
+[zovo-support-end]: #
 
 ## License
 

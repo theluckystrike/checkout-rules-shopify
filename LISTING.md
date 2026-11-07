@@ -68,3 +68,14 @@ Support email and privacy policy URL come from the owner (see OWNER-STEPS.md). P
 4. Open the Cart tester, set the subtotal to 150 and click Run the rules. The method shows as hidden.
 5. In the storefront, add products worth more than 100 to the cart and go to checkout. The method is not offered. Below 100 it is.
 6. Open Plan and click Start Pro. Shopify shows a test charge on the review store.
+
+[zovo-support-start]: #
+
+## Zovo links for the listing
+
+Shopify wants links only in their designated fields and no promotional links in the app details (https://shopify.dev/docs/apps/launch/app-requirements-checklist, 5.B.5 and 5.E).
+
+- Developer website field: https://github.com/theluckystrike
+- The GitHub Sponsors link stays in the README of the repository, not in the listing. The app takes payment only through Shopify billing.
+
+[zovo-support-end]: #
